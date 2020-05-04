@@ -13,13 +13,21 @@ function App() {
     fetchAPI();
   }, [])
 
+  const formatDate = (date) => {
+    let newDate = new Date(date)
+    return newDate.toDateString()
+  }
 
   return (
+
     <div className="App">
       {globalInfo.length === 0 ? (
         <h1>Loading...</h1>
       ):(
-        <Cards globalInfo={globalInfo}/> 
+        <div>
+          <Cards globalInfo={globalInfo}/> 
+          <h3>Last Updated: {formatDate(globalInfo.lastUpdate)}</h3>
+        </div>
       )}
     </div>
   );
