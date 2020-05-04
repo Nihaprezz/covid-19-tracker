@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { fetchGlobalData } from "./api/index";
 import Cards from "./components/Cards/cards"
+import Form from "./components/Form/form"
 
 function App() {
   const [globalInfo, setGlobalInfo] = useState([])
+  const [country, setCountry] = useState('global')
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -18,6 +20,10 @@ function App() {
     return newDate.toDateString()
   }
 
+  const handleCountryChange = (e) => {
+    setCountry(e.target.value);
+}
+
   return (
 
     <div className="App">
@@ -27,6 +33,8 @@ function App() {
         <div>
           <Cards globalInfo={globalInfo}/> 
           <h3>Last Updated: {formatDate(globalInfo.lastUpdate)}</h3>
+
+          <Form handleCountryChange={handleCountryChange} country={country}/>
         </div>
       )}
     </div>
