@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import { fetchGlobalData } from "./api/index";
+import { fetchGlobalData, fetchCountryInfo } from "./api/index";
 import Cards from "./components/Cards/cards"
 import Form from "./components/Form/form"
+import Chart from "./components/Charts/chart"
 
 function App() {
   const [globalInfo, setGlobalInfo] = useState([])
@@ -22,7 +23,13 @@ function App() {
 
   const handleCountryChange = (e) => {
     setCountry(e.target.value);
-}
+
+    const getCountryInfo = async () => {
+      setGlobalInfo(await fetchCountryInfo(e.target.value))
+    }
+    //working on async feature to get the country stats
+    getCountryInfo();
+  }
 
   return (
 
@@ -35,6 +42,8 @@ function App() {
           <h3>Last Updated: {formatDate(globalInfo.lastUpdate)}</h3>
 
           <Form handleCountryChange={handleCountryChange} country={country}/>
+
+          <Chart globalInfo={globalInfo}/>
         </div>
       )}
     </div>

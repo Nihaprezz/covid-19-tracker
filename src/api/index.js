@@ -25,4 +25,15 @@ const fetchCountries = async () => {
     }
 }
 
-export { fetchGlobalData, fetchCountries}
+const fetchCountryInfo = async (country) => {
+    try {
+        const data = await fetch(url + `/countries/${country}`)
+        const json = await data.json();
+        
+        return json
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export { fetchGlobalData, fetchCountries, fetchCountryInfo}
