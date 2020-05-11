@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { fetchGlobalData, fetchCountryInfo } from "./api/index";
 import Cards from "./components/Cards/cards"
 import Form from "./components/Form/form"
-import Chart from "./components/Charts/chart"
+import Chart from "./components/Charts/barchart"
 
 function App() {
   const [globalInfo, setGlobalInfo] = useState([])
